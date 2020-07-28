@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://andybrewer.github.io/mvp/mvp.css" rel="stylesheet"></link>
+  </head>
+  <body>
+    <header>
+      <h1>Remote Jobs</h1>
+      <h3>{{result_total_job}} {{term}} jobs found.</h3>
+      <h4><a href="/export?term={{term}}" download="{{term}}.csv">Export to CSV</a></h4>
+      <h5><a href="/">← Go back</a></h5>
+    </header>
+    <main>
+      {%for jobs in job_list%}
+        {%for job in jobs%}
+          <div>
+            <h3>{{job.title}}</h3>
+            <h3>{{job.company}}</h3>
+            {%if job.logo=="Stack Overflow"%}
+            <h4><a href="https://stackoverflow.com{{job.link}}" target="_blank">Apply</a></h4>
+            {%elif job.logo=="We Work Remotely"%}
+            <h4><a href="https://weworkremotely.com{{job.link}}" target="_blank">Apply</a></h4>
+            {%elif job.logo=="Remote"%}
+            <h4><a href="https://remoteok.io{{job.link}}" target="_blank">Apply</a></h4>
+            {%endif%}
+            <hr>
+          </div>
+        {%endfor%}
+      {%endfor%}
+    </main>
+  </body>
+</html>
